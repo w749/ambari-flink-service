@@ -5,7 +5,7 @@
 # 在ambari-server节点获取版本号
 VERSION=`hdp-select status hadoop-client | sed 's/hadoop-client - \([0-9]\.[0-9]\).*/\1/'`
 # 下载ambari-flink-service服务到 ambari-server 资源目录下，如果无法访问外网可以下载下来传到目的目录
-sudo git clone https://github.com/abajwa-hw/ambari-flink-service.git /var/lib/ambari-server/resources/stacks/HDP/$VERSION/services/FLINK
+sudo git clone git@github.com:w749/ambari-flink-service.git /var/lib/ambari-server/resources/stacks/HDP/$VERSION/services/FLINK
 cd /var/lib/ambari-server/resources/stacks/HDP/$VERSION/services/FLINK/
 ```
 
