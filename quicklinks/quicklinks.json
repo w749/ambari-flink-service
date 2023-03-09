@@ -1,0 +1,28 @@
+{
+    "name": "default",
+    "description": "default quick links configuration",
+    "configuration": {
+      "protocol": {
+        "type": "http",
+        "checks": [
+  
+        ]
+      },
+      "links": [
+        {
+          "name": "flink_dashboard",
+          "label": "Flink Dashboard",
+          "component_name": "FLINK_MASTER",
+          "url": "%@://%@:%@",
+          "port": {
+            "http_property": "rest.port",
+            "http_default_port": "8081",
+            "https_property": "rest.port",
+            "https_default_port": "8081",
+            "regex": "^(\\d+)$",
+            "site": "flink-conf"
+          }
+        }
+      ]
+    }
+  }

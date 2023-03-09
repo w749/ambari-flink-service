@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+
+  <property>
+    <name>flink_log_dir</name>
+    <value>/var/log/flink</value>    
+    <description>Flink日志输出目录</description>
+  </property> 
+
+ <property>
+    <name>flink_pid_dir</name>
+    <value>/var/run/flink</value>
+    <description>包含运行PID的目录</description>
+  </property>
+
+  <property>
+    <name>flink_user</name>
+    <value>flink</value>
+    <property-type>USER</property-type>
+    <description>使用该用户运行Flink的守护进程</description>
+  </property> 
+        
+  <property>
+    <name>flink_group</name>
+    <value>flink</value>
+    <property-type>GROUP</property-type>
+    <description>Flink的用户组</description>
+  </property> 
+
+  <property>
+    <name>content</name>
+    <value>
+# Flink dashboard post
+rest.port: 8081
+
+# Flink high-availability
+high-availability.zookeeper.quorum: localhost:2181
+high-availability: ZOOKEEPER
+high-availability.storageDir: hdfs:///user/flink/ha
+high-availability.zookeeper.client.acl: open
+
+# set JAVA_HOME
+env.java.home: /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.65-3.b17.el7.x86_64/jre
+env.java.opts: -XX:+UseG1GC
+env.java.opts.jobmanager: 
+env.java.opts.taskmanager: 
+
+execution.buffer-timeout: 100
+execution.checkpointing.externalized-checkpoint-retention: RETAIN_ON_CANCELLATION
+execution.checkpointing.max-concurrent-checkpoints: 1
+execution.checkpointing.min-pause: 0
+execution.checkpointing.mode: EXACTLY_ONCE
+execution.checkpointing.snapshot-compression: false
+execution.checkpointing.timeout: 60000
+execution.target: yarn-per-job
+
+historyserver.cli.fallback: true
+jobmanager.archive.fs.dir: hdfs:///user/flink/applicationHistory
+jobmanager.heap.size: 1073741824
+
+parallelism.default: 1
+pipeline.auto-watermark-interval: 200
+pipeline.generic-types: true
+pipeline.object-reuse: false
+
+security.kerberos.login.contexts: Client,KafkaClient
+security.kerberos.login.use-ticket-cache: false
+
+state.backend: FILESYSTEM
+state.backend.incremental: true
+state.backend.local-recovery: true
+state.backend.rocksdb.memory.high-prio-pool-ratio: 0.1
+state.backend.rocksdb.memory.managed: true
+state.backend.rocksdb.memory.write-buffer-ratio: 0.5
+state.backend.rocksdb.timer-service.factory: ROCKSDB
+state.checkpoints.dir: hdfs:///user/flink/checkpoints
+state.checkpoints.num-retained: 3
+state.savepoints.dir: hdfs:///user/flink/savepoints
+table.exec.hive.infer-source-parallelism: true
+table.exec.hive.infer-source-parallelism.max: 1000
+
+taskmanager.memory.fraction: 0.6
+taskmanager.memory.managed.fraction: 0.4
+taskmanager.memory.network.fraction: 0.1
+taskmanager.memory.network.max: 2147483648
+taskmanager.memory.process.size: 2147483648
+taskmanager.numberOfTaskSlots: 1
+
+yarn.application-attempts: 5
+yarn.container-start-command-template: %java% %jvmmem% %jvmopts% -DyarnContainerId=$CONTAINER_ID %logging% %class% %args% %redirects%
+yarn.maximum-failed-containers: 100
+yarn.tags: flink
+
+classloader.check-leaked-classloader: false
+  </value>
+  <description>Template for flink-conf.yaml</description>
+  
+  </property>
+
+</configuration>
+
