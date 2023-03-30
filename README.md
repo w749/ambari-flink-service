@@ -47,6 +47,7 @@ useradd -d /home/flink -g flink flink
 
 然后添加服务并选择需要安装的服务器，随后修改关键配置信息
 ![Image](screenshots/edit-configuation.png?raw=true)
+不建议开启JobManager高可用模式，那样会导致Flink ID始终为`00000000000000000000000000000000`，在保存已完成作业数据到`jobmanager.archive.fs.dir`目录时会报错文件已存在
 
 检查没问题之后开始安装
 ![Image](screenshots/deploy.png?raw=true)
@@ -57,9 +58,6 @@ useradd -d /home/flink -g flink flink
 
 安装完成
 ![Image](screenshots/flink-status.png?raw=true)
-
-Flink Dashboard，有一个问题是它的地址取决于启动Flink时使用的是哪个NodeManager的Container，这是随机的，所以快速链接有时并不管用。而且提交单作业的时候这里是监控不到的，在Yarn界面中的ApplicationMaster地址中可以看到作业对应的Dashboard
-![Image](screenshots/flink-dashboard.png?raw=true)
 
 安装完成后如需在服务器执行Flink命令还需执行下面的命令
 ```bash
@@ -74,3 +72,5 @@ echo "export HADOOP_CLASSPATH=`hadoop classpath`" >> ~/.bashrc
 flink run -m yarn-cluster examples/batch/WordCount.jar
 ```
 ![Image](screenshots/flink-test.png?raw=true)
+
+安装完成后的快速链接是Flink History Server服务的，默认端口是12000，配置项对应`historyserver.web.port`

@@ -10,15 +10,15 @@
       },
       "links": [
         {
-          "name": "flink_dashboard",
-          "label": "Flink Dashboard",
+          "name": "flink_history_dashboard",
+          "label": "Flink History",
           "component_name": "FLINK_MASTER",
           "url": "%@://%@:%@",
           "port": {
-            "http_property": "rest.port",
-            "http_default_port": "8081",
-            "https_property": "rest.port",
-            "https_default_port": "8081",
+            "http_property": "historyserver.web.port",
+            "http_default_port": "12000",
+            "https_property": "historyserver.web.port",
+            "https_default_port": "12000",
             "regex": "^(\\d+)$",
             "site": "flink-conf"
           }

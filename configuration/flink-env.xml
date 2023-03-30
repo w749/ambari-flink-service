@@ -32,20 +32,28 @@
   <property>
     <name>content</name>
     <value>
-# Flink dashboard post
-rest.port: 8081
-
-# Flink high-availability
-high-availability.zookeeper.quorum: localhost:2181
-high-availability: ZOOKEEPER
-high-availability.storageDir: hdfs:///user/flink/ha
-high-availability.zookeeper.client.acl: open
-
 # set JAVA_HOME
 env.java.home: /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.65-3.b17.el7.x86_64/jre
 env.java.opts: -XX:+UseG1GC
 env.java.opts.jobmanager: 
 env.java.opts.taskmanager: 
+
+# set historyserver port
+historyserver.web.port: 12000
+historyserver.archive.fs.dir: hdfs:///user/flink/applicationHistory
+historyserver.archive.fs.refresh-interval: 10000
+
+historyserver.cli.fallback: true
+jobmanager.archive.fs.dir: hdfs:///user/flink/applicationHistory
+jobmanager.heap.size: 1073741824
+
+rest.port: 8081
+
+# Flink high-availability
+# high-availability.zookeeper.quorum: localhost:2181
+# high-availability: ZOOKEEPER
+# high-availability.storageDir: hdfs:///user/flink/ha
+# high-availability.zookeeper.client.acl: open
 
 execution.buffer-timeout: 100
 execution.checkpointing.externalized-checkpoint-retention: RETAIN_ON_CANCELLATION
@@ -55,10 +63,6 @@ execution.checkpointing.mode: EXACTLY_ONCE
 execution.checkpointing.snapshot-compression: false
 execution.checkpointing.timeout: 60000
 execution.target: yarn-per-job
-
-historyserver.cli.fallback: true
-jobmanager.archive.fs.dir: hdfs:///user/flink/applicationHistory
-jobmanager.heap.size: 1073741824
 
 parallelism.default: 1
 pipeline.auto-watermark-interval: 200
