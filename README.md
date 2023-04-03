@@ -16,7 +16,7 @@ cd /var/lib/ambari-server/resources/stacks/HDP/$VERSION/services/FLINK/
     <name>FLINK</name>
     <displayName>Flink</displayName>
     <comment>Apache Flink is a streaming ...</comment>
-    <version>1.10.3</version>
+    <version>1.14.6</version>
     ```
 
 2. configuration/flink-ambari-config.xml 指定Flink安装包地址
