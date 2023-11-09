@@ -47,7 +47,6 @@ historyserver.cli.fallback: true
 jobmanager.archive.fs.dir: hdfs:///user/flink/applicationHistory
 jobmanager.heap.size: 1073741824
 
-rest.port: 8081
 
 # Flink high-availability
 # high-availability.zookeeper.quorum: localhost:2181
@@ -98,6 +97,7 @@ yarn.maximum-failed-containers: 100
 yarn.tags: flink
 
 classloader.check-leaked-classloader: false
+classloader.resolve-order: parent-first
   </value>
   <description>Template for flink-conf.yaml</description>
   
